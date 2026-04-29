@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: brachieldod/app-translator-backend:latest
+        image: rachel480/app-translator-backend:latest
         imagePullPolicy: IfNotPresent  
         ports:
         - containerPort: 3001

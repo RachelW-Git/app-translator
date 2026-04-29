@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: brachieldod/app-translator-frontend:latest
+        image: rachel480/app-translator-frontend:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
