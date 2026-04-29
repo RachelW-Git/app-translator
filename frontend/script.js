@@ -1,36 +1,28 @@
-const btn = document.getElementById('translateBtn');
-const source = document.getElementById('source');
-const target = document.getElementById('target');
-const result = document.getElementById('result');
-const historyList = document.getElementById('history');
+<!DOCTYPE html>
+<html lang="he">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>אפליקציית תרגום</title>
+</head>
+<body>
+<h1>אפליקציית תרגום</h1>
+<textarea id="source" rows="4" cols="40" placeholder="הקלד טקסט לתרגום..."></textarea><br>
+<select id="target">
+<option value="en">English</option>
+<option value="he">עברית</option>
+<option value="fr">Français</option>
+<option value="es">Español</option>
+</select>
+<button id="translateBtn">תרגם</button>
+<h3>תוצאה:</h3>
+<div id="result" style="border:1px solid #ccc; padding:10px; min-height:40px;"></div>
 
 
-btn.addEventListener('click', async () => {
-const text = source.value.trim();
-if (!text) return;
+<h3>היסטוריית תרגומים</h3>
+<ul id="history"></ul>
 
 
-result.textContent = 'מתרגם...';
-try {
-const res = await fetch('http://localhost:3001/translate', {
-method: 'POST',
-headers: { 'Content-Type': 'application/json' },
-body: JSON.stringify({ text, target: target.value })
-});
-const data = await res.json();
-result.textContent = data.translatedText;
-loadHistory();
-} catch (err) {
-result.textContent = 'שגיאה: ' + err.message;
-}
-});
-
-
-async function loadHistory() {
-const res = await fetch('http://localhost:3001/history');
-const data = await res.json();
-historyList.innerHTML = data.map(t => `<li>${t.source_text} → ${t.translated_text}</li>`).join('');
-}
-
-
-loadHistory();
+<script src="script.js"></script>
+</body>
+</html>
